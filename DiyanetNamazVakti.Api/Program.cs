@@ -1,4 +1,5 @@
 using Asp.Versioning.ApiExplorer;
+using DiyanetNamazVakti.Api.WebCommon.ActionFilters;
 using DiyanetNamazVakti.Api.WebCommon.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,8 +32,8 @@ builder.Services.AddTransient<IDailyContentService, DailyContentService>();
 builder.Services.AddTransient<IAwqatSalahService, AwqatSalahService>();
 
 builder.Services
-    .AddControllers()
-    //.AddControllers(opt => opt.Filters.Add<ClientAtionFilter>()) //Use here to add a simple authentication It is recommended. Please delete the top line
+    //.AddControllers()
+    .AddControllers(opt => opt.Filters.Add<ClientAtionFilter>()) //Use here to add a simple authentication It is recommended. Please delete the top line
     .ConfigureApiBehaviorOptions(options =>
     {
         options.InvalidModelStateResponseFactory = context =>
